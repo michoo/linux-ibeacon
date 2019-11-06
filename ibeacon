@@ -75,7 +75,7 @@ def process_command(c):
 
 # check to see if we are the superuser - returns 1 if yes, 0 if no
 def check_for_sudo():
-    if 'SUDO_UID' in os.environ.keys():
+    if 'SUDO_UID' in os.environ.keys() or os.geteuid() == 0:
         return 1
     else:
         print("Error: this script requires superuser privileges.  Please re-run with `sudo.'")
